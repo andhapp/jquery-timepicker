@@ -23,7 +23,7 @@ Example: Your HTML code looks like this:
   </div>
   
 then in your javascript file do the following:
-
+  
   $('input#select_time').timepicker();
   
 Please make sure the input box is inside a div.
@@ -31,7 +31,7 @@ Please make sure the input box is inside a div.
 Works with **jquery 1.4.2**.
 
 You can supply the option to display a 24-hr clock and no time-of-day selection box by using the following javascript:
-
+  
   $('input#select_time').timepicker({clock12:false});
 
 If you get stuck, just look at the tests. 
