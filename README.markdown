@@ -17,14 +17,14 @@ Usage
 Again, simple. It hides an input box and displays three (or two based on supplied options) select boxes, one each for hour, mins and time of day (am or pm). All, you need to do is attach the timepicker function to the input box that will be used for time input.
 
 Example: Your HTML code looks like this:
-
-  <div id="timeContainer">
-    <input type="text" id="select_time" value="">
-  </div>
+    
+    <div id="timeContainer">
+        <input type="text" id="select_time" value="">
+    </div>
   
 then in your javascript file do the following:
   
-  $('input#select_time').timepicker();
+    $('input#select_time').timepicker();
   
 Please make sure the input box is inside a div.
 
@@ -32,7 +32,7 @@ Works with **jquery 1.4.2**.
 
 You can supply the option to display a 24-hr clock and no time-of-day selection box by using the following javascript:
   
-  $('input#select_time').timepicker({clock12:false});
+    $('input#select_time').timepicker({clock12:false});
 
 If you get stuck, just look at the tests. 
 
