@@ -4,7 +4,7 @@ TimePicker: A simple solution for picking time
 About
 -----
 
-**jquery-timepicker** a very simple jquery plugin, originally developed by [Jason Huck](http://www.corefive.com/), and improved by [Anuj Dutta](http://www.andhapp.com/blog) by adding unit tests and improving the overall readability and standard of the code. Code was originally found at [Google's source code repository](http://code.google.com/p/jquery-timepicker. 
+**jquery-timepicker** a very simple jquery plugin, originally developed by [Jason Huck](http://www.corefive.com/), and improved by [Anuj Dutta](http://www.andhapp.com/blog) by adding unit tests and improving the overall readability and standard of the code. Code was originally found at [Google's source code repository](http://code.google.com/p/jquery-timepicker). 
 
 
 Inspiration
@@ -26,7 +26,7 @@ then in your javascript file do the following:
   
     $('input#select_time').timepicker();
   
-Please make sure the input box is inside a div.
+Please make sure the input box is inside a div since the select boxes are appended to the parent div.
 
 Works with **jquery 1.4.2**.
 
