@@ -26,7 +26,7 @@
 			
 			if (type == "hrs12") {
 				sourceArray = options.hrs12.split(",");
-				result += '<select id="h_' + elemId + '" class="h timepicker">';				
+				result += '<select id="h_' + elemId + '" class="h timepicker">';	
 			} else if (type == "hrs24") {
 				sourceArray = options.hrs24.split(",");
 				result += '<select id="h_' + elemId + '" class="h timepicker">';								
@@ -39,7 +39,7 @@
 			}
 			
 			//#TODO: Some bug somewhere. Adds an extra Array element to the end.
-			sourceArray.pop();
+			//sourceArray.pop();
 				
 			for(elem in sourceArray) {
 				var value = sourceArray[elem];
@@ -47,7 +47,7 @@
 				result += '>' + value + '</option>';
 			}
 			result += '</select>';
-			
+		
 			// Get the parent element where the input box is and then just append the select boxes in it.
 			var parentElement = $(object).parents(0);
 			$(parentElement).append(result);
