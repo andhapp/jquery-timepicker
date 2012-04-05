@@ -1,6 +1,0 @@
-* Improve README
-* Need to look into safari bug
-* Bug in Safari in parseInt. You have to specify the radix. Page 114 of 252 of ECMA script.
-* Add timezones
-* Create a gem that can be packged just like jquery-rails (although, it might create bugs since this plugin depends on one version and jquery-rails might depend on completely different)
-* Add locale String
