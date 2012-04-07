@@ -38,9 +38,16 @@ If you get stuck, just look at the tests.
 
 ## Specs
 
-The plugin is tested using [Evergreen](http://jnicklas/evergreen), a behaviour driven testing framework for javascript built on top of Jasmine. To run the specs, clone the repository, install required gems and then run the following:
+The plugin is tested using [Evergreen](http://github.com/jnicklas/evergreen), a behaviour driven testing framework for javascript built on top of Jasmine. To run the specs, clone the repository, install required gems and then run the following:
 
     bundle exec evergreen run    
+
+## Versioning
+
+The code follows seamntic versioning and is at 0.1.0 at the moment. The
+refactoring hasn't changed any of the public APIs, therefore, it will
+staty at that version for now.
+
 
 ## Roadmap
 
