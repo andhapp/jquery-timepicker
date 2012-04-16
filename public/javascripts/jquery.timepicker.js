@@ -22,10 +22,21 @@
 
       var timePicker = new TimePicker(elem, options)
       var htmlResult = timePicker.process()
+      var popUpContainer = {}
 
-      makeHidden(this) // Explicity setting the type property
+      if(options.inPopup) {
+        popUpContainer = createPopupContainer()
 
-      elem.parents(0).append(htmlResult)
+        var top = elem.offset().top + elem.outerHeight()
+        var left = elem.offset().left
+
+        popUpContainer.css({top: top, left: left})
+        popUpContainer.append(htmlResult)
+
+      } else {
+        makeHidden(this) // Explicity setting the type property
+        elem.parents(0).append(htmlResult)
+      }
 
       timePicker.handleEvents()
 			
@@ -137,6 +148,13 @@
 
   }
 
+  function createPopupContainer() {
+    var popUpContainer = $('<div>', {id: 'timepicker', style:'display:none; position:absolute;', 'class': 'timepicker'})
+    $('body').append(popUpContainer)
+
+    return popUpContainer
+  }
+
   function makeHidden(object) {
     object.type = "hidden"
   }
@@ -148,7 +166,9 @@
 			hrs12: 	"01,02,03,04,05,06,07,08,09,10,11,12",
 			hrs24: 	"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
 		},
-		clock12: true
+		clock12: true,
+    cssClass: 'timepicker',
+		inPopup: false
 	}
 
 })(jQuery)
