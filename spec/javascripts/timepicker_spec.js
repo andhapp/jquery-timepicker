@@ -102,6 +102,65 @@ describe('Binding input type text timepicker function', function() {
 
         expect(num_children).toEqual(3)
       })
+      it('should show the timepicker container on input box focus', function() {
+        selectTimeInputUserOptionsPopup.trigger("focus")
+
+        expect(parentContainer.is(":visible")).toEqual(true)
+      })
+      it('should hide the timepicker container when user clicks outside of input box or the timepicker container', function() {
+        runs(function() {
+          selectTimeInputUserOptionsPopup.trigger("focus")
+        })
+
+        waits(500)
+
+        runs(function(){
+          test.trigger("click")
+          expect(parentContainer.is(":visible")).toEqual(false)
+        })
+      })
+      it('should not hide the timepicker container when user clicks in timepicker container', function() {
+        runs(function() {
+          selectTimeInputUserOptionsPopup.trigger("focus")
+        })
+
+        waits(500)
+
+        runs(function(){
+          parentContainer.trigger("click")
+          expect(parentContainer.is(":visible")).toEqual(true)
+        })
+      })
+      it('should not hide the timepicker container when user clicks in input box', function() {
+        runs(function() {
+          selectTimeInputUserOptionsPopup.trigger("focus")
+        })
+
+        waits(500)
+
+        runs(function(){
+          selectTimeInputUserOptionsPopup.trigger("focus")
+          expect(parentContainer.is(":visible")).toEqual(true)
+        })
+      })
+      it('should not hide the timepicker container when user selects time values', function() {
+        runs(function() {
+          selectTimeInputUserOptionsPopup.trigger("focus")
+        })
+
+        waits(500)
+
+        runs(function(){
+          hour_select_element().trigger("change")
+       })
+
+        waits(100)
+
+        runs(function(){
+          expect(parentContainer.is(":visible")).toEqual(true)
+        })
+      })
+
     })
     describe('clock12:false', function() {
       beforeEach(function() {

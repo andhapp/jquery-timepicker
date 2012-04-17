@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Jquery Timepicker Integration test</title>
+    <script src="../../public/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="../../public/javascripts/jquery.timepicker.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(function() {
+        $('input#deadline_time_24h').timepicker()
+        $('input#deadline_time_12h').timepicker({clock12:false})
+        $('input#deadline_time_popup').timepicker({inPopup:true})
+      })
+    </script>
+    <style type="text/css" media="all">
+      input {
+        height: 30px;
+      }
+      div {
+        height: 50px;
+        margin: 10px 0 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      JQuery timepicker in action
+    </h1>
+    <div>
+      <h2>
+        Default
+      </h2>
+
+      <input id='deadline_time_24h' type='text' placeholder='24 Hr timepicker'>
+    </div>
+    <div>
+      <h2>
+        12 Hour clock
+      </h2>
+      <input id='deadline_time_12h' type='text' placeholder='12 Hr timepicker'>
+    </div>
+    <div>
+      <h2>
+        In pop-up box
+      </h2>
+      <input id='deadline_time_popup' type='text' placeholder='Popup timepicker'>
+    </div>
+  </body>
+</html>

@@ -16,16 +16,18 @@
 	$.fn.timepicker = function(user_options) {
 		
     var elem = this
+    var CSS_CLASS = 'timepicker'
+    var PARENT_CONTAINER_ID = 'timepicker'
+    var ELEMENT_CSS_CLASS = 'timepickerElement'
 
 		return this.each(function() {
 			var options = $.extend({}, $.timepicker.selectableValues, $.timepicker, user_options)
 
       var timePicker = new TimePicker(elem, options)
       var htmlResult = timePicker.process()
-      var popUpContainer = {}
 
       if(options.inPopup) {
-        popUpContainer = createPopupContainer()
+        var popUpContainer = createPopupContainer()
 
         var top = elem.offset().top + elem.outerHeight()
         var left = elem.offset().left
@@ -33,15 +35,60 @@
         popUpContainer.css({top: top, left: left})
         popUpContainer.append(htmlResult)
 
+        elem.focusin(focusInHandler)
       } else {
         makeHidden(this) // Explicity setting the type property
-        elem.parents(0).append(htmlResult)
+        elem.parent().append(htmlResult)
       }
 
       timePicker.handleEvents()
 			
 		})
-				
+
+    function focusInHandler() {
+      var object = $('.timepicker')
+
+      object.fadeIn(400, function() {
+        $(document).bind('click', function(event) {
+          if(canHidePopupContainer(event)) {
+            object.hide()
+            $(document).unbind('click')
+          }
+        })
+      })
+    }
+
+    function canHidePopupContainer(event) {
+      function isPopupContainer(event) {
+        return $(event.target).attr('class') === CSS_CLASS
+      }
+
+      function isInputBox(event) {
+        return $(event.target)[0] === elem[0]
+      }
+
+      function isTimepickerDropdowns(event) {
+        return $(event.target).attr('class') && $(event.target).attr('class').indexOf(ELEMENT_CSS_CLASS) > 0
+      }
+
+      return (
+        ! ( isPopupContainer(event) ||
+            isInputBox(event) ||
+            isTimepickerDropdowns(event))
+      )
+    }
+
+    function createPopupContainer() {
+      var popUpContainer = $('<div>', {id: PARENT_CONTAINER_ID, style:'display:none; position:absolute;', 'class': CSS_CLASS})
+      $('body').append(popUpContainer)
+
+      return popUpContainer
+    }
+
+    function makeHidden(object) {
+      object.type = "hidden"
+    }
+		
 	}
 
   function TimePicker(elem, options) {
@@ -50,7 +97,7 @@
 
     this.handleEvents = function() {
       var self = this
-      $('.timepicker').change(function() {
+      $('.timepickerElement').change(function() {
         var final_value = self.hours.selectedValue() + ':' + self.minutes.selectedValue()
 
         if(self.ampm) {
@@ -86,7 +133,7 @@
 
     function createSelectElementHTML(id, className, source) {
       var source = source.split(',')
-      var result = '<select id="' + className + '_' + id + '" class="' + className + ' timepicker">'
+      var result = '<select id="' + className + '_' + id + '" class="' + className + ' timepickerElement">'
 
       $.each(source, function(index, value) {
         result += '<option value="' + value + '"'
@@ -148,18 +195,7 @@
 
   }
 
-  function createPopupContainer() {
-    var popUpContainer = $('<div>', {id: 'timepicker', style:'display:none; position:absolute;', 'class': 'timepicker'})
-    $('body').append(popUpContainer)
-
-    return popUpContainer
-  }
-
-  function makeHidden(object) {
-    object.type = "hidden"
-  }
-
-	$.timepicker = {
+  $.timepicker = {
 		selectableValues: {
 			ap: 		"am,pm",
 			mins: 	"00,15,30,45",
@@ -167,7 +203,6 @@
 			hrs24: 	"00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
 		},
 		clock12: true,
-    cssClass: 'timepicker',
 		inPopup: false
 	}
 
