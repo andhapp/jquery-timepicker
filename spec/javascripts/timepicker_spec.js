@@ -19,7 +19,7 @@ function am_pm_select_element() {
   return $('#p_' + id)
 }
 
-describe('Binding input type text timepicker function', function() {
+describe('Binding input type text with timepicker', function() {
   beforeEach(function() {
     test = $('#test')
     id = 'selectTime'
@@ -56,7 +56,7 @@ describe('Binding input type text timepicker function', function() {
       expect(am_pm_select.is(":visible")).toEqual(true)
       expect(num_children).toEqual(2)
     })
-    it('should insert values selected into the input box', function() {
+    it('should insert selected values into hidden input box', function() {
       hour_select.attr("value", "09").trigger("change");
       minute_select.attr("value", "15").trigger("change");
       am_pm_select.attr("value", "am").trigger("change")
@@ -73,10 +73,16 @@ describe('Binding input type text timepicker function', function() {
     describe('inPopup:true', function() {
       beforeEach(function() {
         id = id + 'UserOptionsPopup'
+
         selectTimeInputUserOptionsPopup = createAndAppendElement(id, test)
 
         selectTimeInputUserOptionsPopup.timepicker({inPopup:true})
-        parentContainer = hour_select_element().parent(0)
+
+        hour_select = hour_select_element()
+        minute_select = minute_select_element()
+        am_pm_select = am_pm_select_element()
+
+        parentContainer = hour_select.parent(0)
       })
       it('should be hidden by default', function() {
         expect(parentContainer.is(":visible")).toEqual(false)
@@ -97,10 +103,10 @@ describe('Binding input type text timepicker function', function() {
         expect(parentContainer.attr('id')).toEqual('timepicker')
         expect(parentContainer.attr('class')).toEqual('timepicker')
       })
-      it('should insert the hour, minutes and am/pm in input box parent container', function() {
-        num_children = parentContainer.children('select').length
-
-        expect(num_children).toEqual(3)
+      it('should insert the hour, minutes and am/pm in timepicker container', function() {
+        expect(hour_select.parent(0).attr('id')).toEqual('timepicker')
+        expect(minute_select.parent(0).attr('id')).toEqual('timepicker')
+        expect(am_pm_select.parent(0).attr('id')).toEqual('timepicker')
       })
       it('should show the timepicker container on input box focus', function() {
         selectTimeInputUserOptionsPopup.trigger("focus")
@@ -152,7 +158,7 @@ describe('Binding input type text timepicker function', function() {
 
         runs(function(){
           hour_select_element().trigger("change")
-       })
+        })
 
         waits(100)
 
@@ -160,7 +166,8 @@ describe('Binding input type text timepicker function', function() {
           expect(parentContainer.is(":visible")).toEqual(true)
         })
       })
-
+      afterEach(function() {
+      })
     })
     describe('clock12:false', function() {
       beforeEach(function() {

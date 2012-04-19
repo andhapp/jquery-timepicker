@@ -8,7 +8,7 @@
  * Improved by Anuj Dutta (@andhapp) by adding specs and refactoring the code to remove duplication 
  * and improve code standards
  *
- * Re-released as Version 1.0.0
+ * Version 1.1.0
  *
  */
 
@@ -28,14 +28,9 @@
 
       if(options.inPopup) {
         var popUpContainer = createPopupContainer()
-
-        var top = elem.offset().top + elem.outerHeight()
-        var left = elem.offset().left
-
-        popUpContainer.css({top: top, left: left})
         popUpContainer.append(htmlResult)
 
-        elem.focusin(focusInHandler)
+        elem.focusin(function() { focusInHandler(popUpContainer) })
       } else {
         makeHidden(this) // Explicity setting the type property
         elem.parent().append(htmlResult)
@@ -45,9 +40,7 @@
 			
 		})
 
-    function focusInHandler() {
-      var object = $('.timepicker')
-
+    function focusInHandler(object) {
       object.fadeIn(400, function() {
         $(document).bind('click', function(event) {
           if(canHidePopupContainer(event)) {
@@ -56,6 +49,7 @@
           }
         })
       })
+
     }
 
     function canHidePopupContainer(event) {
@@ -79,8 +73,20 @@
     }
 
     function createPopupContainer() {
-      var popUpContainer = $('<div>', {id: PARENT_CONTAINER_ID, style:'display:none; position:absolute;', 'class': CSS_CLASS})
+
+      var popUpContainer = {}
+
+      if ($("#" + PARENT_CONTAINER_ID).length > 0) {
+        popUpContainer = $('#' + PARENT_CONTAINER_ID)
+      } else {
+        popUpContainer = $('<div>', {id: PARENT_CONTAINER_ID, style:'display:none; position:absolute;', 'class': CSS_CLASS})
+      }
+
       $('body').append(popUpContainer)
+
+      var top = elem.offset().top + elem.outerHeight()
+      var left = elem.offset().left
+      popUpContainer.css({top: top, left: left})
 
       return popUpContainer
     }
