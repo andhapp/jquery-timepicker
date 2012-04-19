@@ -30,11 +30,20 @@ Please make sure the input box is inside a div since the select boxes are append
 
 Works with **jquery 1.7.2**.
 
-You can supply the option to display a 24-hr clock and not display time-of-day selection box by using the following javascript:
+### Options
+
+1. You can supply the option to display a 24-hr clock and not display time-of-day selection box by using the following javascript:
   
     $('input#select_time').timepicker({clock12:false});
 
-If you get stuck, just look at the tests.
+2. You can make the timepicker appear in a popup box by passing in
+   inPopup:true. Default is false.
+  
+    $('input#select_time').timepicker({inPopup:true});
+
+
+If you get stuck, just look at the tests. There is also an example
+index.html file in spec/integration.
 
 ## Specs
 
@@ -44,9 +53,7 @@ The plugin is tested using [Evergreen](http://github.com/jnicklas/evergreen), a 
 
 ## Versioning
 
-The code follows seamntic versioning and is at 0.1.0 at the moment. The
-refactoring hasn't changed any of the public APIs, therefore, it will
-staty at that version for now.
+The code follows seamntic versioning and is at 1.1.0 at the moment.
 
 
 ## Roadmap
@@ -55,5 +62,5 @@ staty at that version for now.
   be fixed now, as I didn't see it again while testing.
 * Add timezones
 * Create a gem that can be packged just like jquery-rails (although, it might create bugs since this plugin depends on one version and jquery-rails might depend on completely different)
-* Add locale String
+* Add locale String, only for am/pm strings.
 
