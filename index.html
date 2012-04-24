@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery-timepicker by andhapp</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Jquery-timepicker</h1>
+        <p>Simple timepicker solution</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/andhapp/jquery-timepicker" class="button fork"><strong>Fork On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/andhapp/jquery-timepicker/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/andhapp/jquery-timepicker/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>TimePicker: A simple solution for picking time</h1>
+
+<h2>About</h2>
+
+<p><strong>jquery-timepicker</strong> a very simple jquery plugin, originally developed by <a href="http://www.corefive.com/">Jason Huck</a>, and improved by <a href="http://www.andhapp.com/blog">Anuj Dutta</a> by adding unit tests and improving the overall readability and standard of the code. Code was originally found at <a href="http://code.google.com/p/jquery-timepicker">Google's source code repository</a>. </p>
+
+<h2>Inspiration</h2>
+
+<p>Simple. Scratch my itch. I could not find a good solution then found Jason's plugin (also listed on the jquery plugin site). It was easy to use and I decided to improve the code and add tests to it.</p>
+
+<h2>Usage</h2>
+
+<p>Again, simple. It hides an input box and displays three (or two based on supplied options) select boxes, one each for hour, mins and time of day (am or pm). All, you need to do is attach the timepicker function to the input box that will be used for time input.</p>
+
+<p>Example: Your HTML code looks like this:</p>
+
+<pre><code>&lt;div id="timeContainer"&gt;
+    &lt;input type="text" id="select_time" value=""&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>and your javascript code should look like this:</p>
+
+<pre><code>$('input#select_time').timepicker();
+</code></pre>
+
+<p>Please make sure the input box is inside a div since the select boxes are appended to the parent div.</p>
+
+<p>Works with <strong>jquery 1.7.2</strong>.</p>
+
+<h3>Options</h3>
+
+<ol>
+<li>
+<p>You can supply the option to display a 24-hr clock and not display time-of-day selection box by using the following javascript:</p>
+
+<p>$('input#select_time').timepicker({clock12:false});</p>
+</li>
+<li>
+<p>You can make the timepicker appear in a popup box by passing in
+inPopup:true. Default is false.</p>
+
+<p>$('input#select_time').timepicker({inPopup:true});</p>
+</li>
+</ol><p>If you get stuck, just look at the tests. There is also an example
+index.html file in spec/integration.</p>
+
+<h2>Specs</h2>
+
+<p>The plugin is tested using <a href="http://github.com/jnicklas/evergreen">Evergreen</a>, a behaviour driven testing framework for javascript built on top of Jasmine. To run the specs, clone the repository, install required gems and then run the following:</p>
+
+<pre><code>bundle exec evergreen run    
+</code></pre>
+
+<h2>Versioning</h2>
+
+<p>The code follows seamntic versioning and is at 1.1.0 at the moment.</p>
+
+<h2>Roadmap</h2>
+
+<ul>
+<li>Bug in Safari in parseInt. You have to specify the radix. This might
+be fixed now, as I didn't see it again while testing.</li>
+<li>Add timezones</li>
+<li>Create a gem that can be packged just like jquery-rails (although, it might create bugs since this plugin depends on one version and jquery-rails might depend on completely different)</li>
+<li>Add locale String, only for am/pm strings.</li>
+</ul>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/andhapp">andhapp</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
