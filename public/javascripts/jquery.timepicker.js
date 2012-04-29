@@ -30,7 +30,7 @@
         var popUpContainer = createPopupContainer()
         popUpContainer.append(htmlResult)
 
-        elem.focusin(function() { focusInHandler(popUpContainer) })
+        elem.focusin(function() { focusInHandler(elem, popUpContainer) })
       } else {
         makeHidden(this) // Explicity setting the type property
         elem.parent().append(htmlResult)
@@ -40,7 +40,9 @@
 			
 		})
 
-    function focusInHandler(object) {
+    function focusInHandler(elem, object) {
+      setPosition(elem, object)
+
       object.fadeIn(400, function() {
         $(document).bind('click', function(event) {
           if(canHidePopupContainer(event)) {
@@ -84,11 +86,14 @@
 
       $('body').append(popUpContainer)
 
-      var top = elem.offset().top + elem.outerHeight()
-      var left = elem.offset().left
-      popUpContainer.css({top: top, left: left})
+      return setPosition(elem, popUpContainer)
+    }
 
-      return popUpContainer
+    function setPosition(source, object) {
+      var top = source.offset().top + source.outerHeight()
+      var left = source.offset().left
+      object.css({top: top, left: left})
+      return object
     }
 
     function makeHidden(object) {
