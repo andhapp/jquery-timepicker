@@ -8,7 +8,7 @@
  * Improved by Anuj Dutta (@andhapp) by adding specs and refactoring the code to remove duplication 
  * and improve code standards
  *
- * Version 1.1.0
+ * Version 1.1.1
  *
  */
 
